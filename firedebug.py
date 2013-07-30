@@ -3,6 +3,7 @@ Remote debug with firebase.
 http://firebase.com
 
 2013, V.Sergeyev <vova.sergeyev@gmail.com>
+https://github.com/vsergeyev/firedebug
 """
 
 import urllib2
@@ -17,8 +18,8 @@ def put(api_endpoint, data):
 
 	opener = urllib2.build_opener(urllib2.HTTPHandler)
 	request = urllib2.Request(api_endpoint, data=data)
-	request.get_method = lambda: 'PUT'
+	request.get_method = lambda: 'PATCH'
 	
 	res = opener.open(request)
 	
-	print res.read()
+	return res.read()
