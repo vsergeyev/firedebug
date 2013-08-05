@@ -7,6 +7,30 @@ https://github.com/vsergeyev/firedebug
 """
 
 import urllib2
+import datetime
+import json
+
+
+def log_json(api_endpoint, obj):
+	"""
+	Serialize object and then call log()
+	"""
+	return log(
+		api_endpoint,
+		json.dumps(obj)
+	)
+
+
+def log(api_endpoint, data):
+	"""
+	Put entry with timestamp
+	"""
+	now = datetime.datetime.now().strftime("%m %d %Y %H:%M:%S")
+
+	return put(
+		api_endpoint,
+		'{"%s": %s}' % (now, data)
+	)
 
 
 def put(api_endpoint, data):

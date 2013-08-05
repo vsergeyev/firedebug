@@ -13,10 +13,19 @@ import firedebug
 
 
 if __name__=="__main__":
-	now = datetime.datetime.now().strftime("%m %d %Y %H:%M:%S")
-	host = socket.gethostname()
+    now = datetime.datetime.now().strftime("%m %d %Y %H:%M:%S")
+    host = socket.gethostname()
 
-	print firedebug.put(
-		"https://my-debug.firebaseIO-demo.com/ponies.json",
-		'{"%s": "%s says hello"}' % (now, host)
-	)
+    db = "https://my-debug.firebaseIO-demo.com/ponies.json"
+
+    print firedebug.put(db,
+        '{"%s": "%s says hello"}' % (now, host)
+    )
+
+    print firedebug.log(db, '"Firedebug log() test"')
+
+    obj = {
+        "a": 1,
+        "b": 2
+    }
+    print firedebug.log_json(db, obj)
